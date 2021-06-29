@@ -1,0 +1,45 @@
+﻿@model Model.Model.Phim
+@{
+    ViewBag.Title = "XemPhim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var cmt = (IEnumerable<Model.Model.BinhLuan>)ViewBag.Binhluan;
+}
+<link href="~/Content/css/xemphim.css" rel="stylesheet" />
+<div class="container xem-phim">
+    <h3>@Model.TenPhim</h3>
+
+    <iframe class="phim-video" src="@Model.Link?autoplay=1"
+            title="YouTube video player" frameborder="0" allow="accelerometer;
+            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen allow='autoplay'></iframe>
+    <!--
+        <a class="btn" style="border-color:#971515" href="/">back</a>
+    -->
+</div>
+<div class="binh-luan">
+    <div style="margin: 10px;">
+        <h2>Bình luận </h2>
+        @foreach (var item in cmt)
+        {
+            <div class="row comment">
+                <div class="col-1">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="col-11 binh-luan-detail">
+                    <span>
+                        <h4 class="ten-tai-khoan">@item.TenTaiKhoan</h4>
+                        <p class="noi-dung">@item.NoiDung</p>
+                    </span>
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-12 d-flex">
+                <textarea type="text" class="soan-noi-dung form-control" placeholder="Cảm nhận của bạn về bộ phim này ..." ></textarea>
+                <button class="btn btn-commnent">Đăng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
